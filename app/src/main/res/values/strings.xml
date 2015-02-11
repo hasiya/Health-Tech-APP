@@ -3,8 +3,9 @@
 
     <string name="app_name">Concussean</string>
     <string name="btn_concussed">Start</string>
-    <string name="btn_play">Return to Play</string>
     <string name="btn_references">References</string>
+    <string name="btn_post">Post-Treatment Advice</string>
+    <string name="btn_play">Return to Play</string>
     <string name="action_home">Home</string>
     <string name="action_restart">Restart</string>
     <string name="action_help">Help</string>
@@ -15,6 +16,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_diagnose">Diagnose</string>
+    <string name="title_activity_post">Post-Treatment Advice</string>
+    <string name="title_activity_ref">References</string>
     <string name="title_activity_outcome1">Concussean</string>
     <string name="seek">Seek immediate medical attention</string>
     <string name="seek2">Seek medical attention if symptoms worsen or do not fade within 24 hours: </string>

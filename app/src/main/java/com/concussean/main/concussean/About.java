@@ -5,14 +5,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.os.Vibrator;
 
 
 public class About extends ActionBarActivity {
+
+    Vibrator vib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
     }
 
 
@@ -34,17 +38,20 @@ public class About extends ActionBarActivity {
 
         if (id == R.id.action_exit)
         {
+            vib.vibrate(50);
             finish();
             System.exit(0);
         }
         if(id == R.id.action_home)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(About.this, MainActivity.class)));
         }
 
         if(id == R.id.action_help)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(About.this, Help.class)));
         }

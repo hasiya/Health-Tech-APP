@@ -3,32 +3,65 @@ package com.concussean.main.concussean;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Vibrator;
+import android.support.v7.app.ActionBar;
+import android.view.LayoutInflater;
 
 import org.w3c.dom.Text;
 
 
 public class Diagnose extends ActionBarActivity {
 
+    Vibrator vib;
     String[] questions;
     int size = 20; //number of questions
     int questionNo = 0;
+    int prevQ = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose);
 
+        /*TextView customView = (TextView)
+                LayoutInflater.from(this).inflate(R.layout.actionbar_custom_title_view_centered,
+                        null);
 
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER );
+
+        customView.setText("Diagnose");
+        getSupportActionBar().setCustomView(customView, params);*/
+
+        vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         TextView t = new TextView(this);
 
         questionNo = getIntent().getExtras().getInt("qNo");
+
+        if (questionNo == 0){
+            Button b = (Button)findViewById(R.id.back_btn);
+            b.setVisibility(View.GONE);
+        }
+
+        if (questionNo == 12){
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                int prev = extras.getInt("prev");
+                if (prev != 0) {
+                    prevQ = extras.getInt("prev");
+                }
+            }
+        }
 
         questions = new String[size];
         questions[0] = "Since the incident, have they lost consciousness at any time?";
@@ -65,6 +98,7 @@ public class Diagnose extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vib.vibrate(50);
                 if (questionNo != 10 && questionNo != 11 && questionNo != 19)
                 {
                     if (choice == 1)
@@ -74,13 +108,19 @@ public class Diagnose extends ActionBarActivity {
                         {
                             //go to Outcome 1
                             finish();
-                            startActivity((new Intent(Diagnose.this, Outcome1.class)));
+                            //startActivity((new Intent(Diagnose.this, Outcome1.class)));
+                            Intent i = new Intent(Diagnose.this, Outcome1.class);
+                            i.putExtra("prev", questionNo);
+                            startActivity(i);
                         }
                         else
                         {
                             //go to Outcome 2
                             finish();
-                            startActivity((new Intent(Diagnose.this, Outcome2.class)));
+                            //startActivity((new Intent(Diagnose.this, Outcome2.class)));
+                            Intent i = new Intent(Diagnose.this, Outcome2.class);
+                            i.putExtra("prev", questionNo);
+                            startActivity(i);
                         }
                     }
                     else
@@ -112,6 +152,7 @@ public class Diagnose extends ActionBarActivity {
                         //t.setText(questions[questionNo]);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", 12);
+                        i.putExtra("prev", 10);
                         finish();
                         startActivity(i);
                     }
@@ -124,6 +165,7 @@ public class Diagnose extends ActionBarActivity {
                         //t.setText(questions[questionNo]);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
+                        i.putExtra("prev", 11);
                         finish();
                         startActivity(i);
                     }
@@ -131,7 +173,10 @@ public class Diagnose extends ActionBarActivity {
                     {
                         //go to Outcome 1
                         finish();
-                        startActivity((new Intent(Diagnose.this, Outcome1.class)));
+                        //startActivity((new Intent(Diagnose.this, Outcome1.class)));
+                        Intent i = new Intent(Diagnose.this, Outcome1.class);
+                        i.putExtra("prev", questionNo);
+                        startActivity(i);
                     }
                 }
                 else if (questionNo == 19)
@@ -140,17 +185,55 @@ public class Diagnose extends ActionBarActivity {
                     {
                         //go to Outcome 2
                         finish();
-                        startActivity((new Intent(Diagnose.this, Outcome2.class)));
+                        //startActivity((new Intent(Diagnose.this, Outcome2.class)));
+                        Intent i = new Intent(Diagnose.this, Outcome2.class);
+                        i.putExtra("prev", questionNo);
+                        startActivity(i);
                     }
                     else
                     {
                         //go to Outcome 3
                         finish();
-                        startActivity((new Intent(Diagnose.this, Outcome3.class)));
+                        //startActivity((new Intent(Diagnose.this, Outcome3.class)));
+                        Intent i = new Intent(Diagnose.this, Outcome3.class);
+                        i.putExtra("prev", questionNo);
+                        startActivity(i);
                     }
                 }
             }
         });
+
+    Button back = (Button)findViewById(R.id.back_btn);
+    back.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            vib.vibrate(50);
+            Log.d("Previous Question:", " " + prevQ);
+            if (questionNo != 12){
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                Intent i = new Intent(Diagnose.this, Diagnose.class);
+                i.putExtra("qNo", questionNo-1);
+                finish();
+                startActivity(i);
+            }
+            else{
+                if (prevQ != 0){
+                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    Intent i = new Intent(Diagnose.this, Diagnose.class);
+                    i.putExtra("qNo", prevQ);
+                    finish();
+                    startActivity(i);
+                }
+                else{
+                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    Intent i = new Intent(Diagnose.this, Diagnose.class);
+                    i.putExtra("qNo", questionNo-1);
+                    finish();
+                    startActivity(i);
+                }
+            }
+        }
+    });
 
     }
 
@@ -159,6 +242,7 @@ public class Diagnose extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_diagnose, menu);
+
         return true;
     }
 
@@ -172,29 +256,34 @@ public class Diagnose extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_exit)
         {
+            vib.vibrate(50);
             finish();
             System.exit(0);
         }
         if(id == R.id.action_about)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(Diagnose.this, About.class)));
         }
 
         if(id == R.id.action_help)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(Diagnose.this, Help.class)));
         }
 
         if(id == R.id.action_home)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(Diagnose.this, MainActivity.class)));
         }
 
         if(id == R.id.action_restart)
         {
+            vib.vibrate(50);
             finish();
             //startActivity((new Intent(Outcome1.this, Diagnose.class)));
             Intent i = new Intent(Diagnose.this, Diagnose.class);

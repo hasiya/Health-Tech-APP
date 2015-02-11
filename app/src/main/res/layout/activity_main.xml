@@ -20,4 +20,34 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         style="@android:style/ButtonBar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_post"
+        android:id="@+id/post_treatment_btn"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        android:textColor="#ffe8e8e8"
+        android:background="#ff3564ff"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@android:style/ButtonBar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_references"
+        android:id="@+id/references_btn"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="280dp"
+        android:textColor="#ffe8e8e8"
+        android:background="#ff3564ff"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@android:style/ButtonBar" />
 </RelativeLayout>

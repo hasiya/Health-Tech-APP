@@ -7,23 +7,56 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.os.Vibrator;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    Vibrator vib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
         Button btn = (Button) findViewById((R.id.start_btn));
         btn.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
+                vib.vibrate(50);
                 finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, Diagnose.class);
                 i.putExtra("qNo", 0);
+                startActivity(i);
+            }
+        });
+        btn = (Button) findViewById((R.id.post_treatment_btn));
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                vib.vibrate(50);
+                finish();
+                //startActivity((new Intent(MainActivity.this, Diagnose.class)));
+                Intent i = new Intent(MainActivity.this, Post.class);
+                //i.putExtra("qNo", 0);
+                startActivity(i);
+            }
+        });
+        btn = (Button) findViewById((R.id.references_btn));
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                vib.vibrate(50);
+                finish();
+                //startActivity((new Intent(MainActivity.this, Diagnose.class)));
+                Intent i = new Intent(MainActivity.this, References.class);
+                //i.putExtra("qNo", 0);
                 startActivity(i);
             }
         });
@@ -47,18 +80,21 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_exit)
         {
+            vib.vibrate(50);
             finish();
             System.exit(0);
         }
 
         if(id == R.id.action_about)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(MainActivity.this, About.class)));
         }
 
         if(id == R.id.action_help)
         {
+            vib.vibrate(50);
             finish();
             startActivity((new Intent(MainActivity.this, Help.class)));
         }
