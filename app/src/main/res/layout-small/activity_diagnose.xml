@@ -15,7 +15,6 @@
         android:id="@+id/question_txt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:clickable="false" />
 
 
@@ -25,8 +24,8 @@
         android:id="@+id/yesNo_Btns"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingTop="50dp">
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" >
 
         <Button
             android:layout_width="fill_parent"
@@ -37,7 +36,6 @@
             android:id="@+id/yes_btn"
             android:layout_below="@+id/question_txt"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="104dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:clickable="true"
@@ -53,7 +51,7 @@
             android:id="@+id/no_btn"
             android:layout_below="@+id/yes_btn"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"/>
 
@@ -64,8 +62,7 @@
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
         android:background="@color/highlighted_text_material_light"
-        android:gravity="center"
-        android:paddingBottom="25dp">
+        android:gravity="center">
 
 
         <TextView

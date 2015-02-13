@@ -64,8 +64,7 @@
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
         android:background="@color/highlighted_text_material_light"
-        android:gravity="center"
-        android:paddingBottom="25dp">
+        android:gravity="center">
 
 
         <TextView
