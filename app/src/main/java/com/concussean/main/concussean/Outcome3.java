@@ -3,6 +3,7 @@ package com.concussean.main.concussean;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Vibrator;
@@ -23,7 +24,9 @@ public class Outcome3 extends ActionBarActivity {
 
         prevQ = getIntent().getExtras().getInt("prev");
 
-        Button back = (Button)findViewById(R.id.back_btn);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /*Button back = (Button)findViewById(R.id.back_btn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +37,7 @@ public class Outcome3 extends ActionBarActivity {
                 finish();
                 startActivity(i);
             }
-        });
+        });*/
     }
 
 
@@ -88,6 +91,15 @@ public class Outcome3 extends ActionBarActivity {
             //startActivity((new Intent(Outcome1.this, Diagnose.class)));
             Intent i = new Intent(Outcome3.this, Diagnose.class);
             i.putExtra("qNo", 0);
+            startActivity(i);
+        }
+        if(id == android.R.id.home) {
+            Log.d("Home Pressed", "");
+            vib.vibrate(50);
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            Intent i = new Intent(Outcome3.this, Diagnose.class);
+            i.putExtra("qNo", prevQ);
+            finish();
             startActivity(i);
         }
 

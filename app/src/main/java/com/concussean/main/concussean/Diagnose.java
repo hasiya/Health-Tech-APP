@@ -27,30 +27,40 @@ public class Diagnose extends ActionBarActivity {
     String[] questions;
     int size = 20; //number of questions
     int questionNo = 0;
+    String textSize = "";
     int prevQ = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose);
 
+        String small = "S";
+        String medium = "M";
+        String large = "L";
 
+        textSize = getIntent().getExtras().getString("textSize");
 
+        TextView t = (TextView) findViewById(R.id.question_txt);
 
-        /*TextView customView = (TextView)
-                LayoutInflater.from(this).inflate(R.layout.actionbar_custom_title_view_centered,
-                        null);
+        if(textSize == null){
+            textSize = "";
+        }
+        else if(textSize.equals(small)){
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        }
+        else if (textSize.equals(medium)){
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+        }
+        else if(textSize.equals(large)){
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,22);
+        }
 
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT,
-                ActionBar.LayoutParams.MATCH_PARENT, Gravity.CENTER );
-
-        customView.setText("Diagnose");
-        getSupportActionBar().setCustomView(customView, params);*/
 
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
-        TextView t = new TextView(this);
+
 
         questionNo = getIntent().getExtras().getInt("qNo");
 
@@ -98,8 +108,6 @@ public class Diagnose extends ActionBarActivity {
         questions[19] = "Are they experiencing a 'fogginess' to their thoughts?";
 
 
-
-        t = (TextView) findViewById(R.id.question_txt);
         t.setText(questions[questionNo]);
         Button yesBtn = (Button) findViewById((R.id.yes_btn));
         Button noBtn = (Button) findViewById((R.id.no_btn));
@@ -123,6 +131,7 @@ public class Diagnose extends ActionBarActivity {
                             //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                             Intent i = new Intent(Diagnose.this, Outcome1.class);
                             i.putExtra("prev", questionNo);
+                            i.putExtra("textSize", textSize);
                             startActivity(i);
                         }
                         else
@@ -132,6 +141,7 @@ public class Diagnose extends ActionBarActivity {
                             //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                             Intent i = new Intent(Diagnose.this, Outcome2.class);
                             i.putExtra("prev", questionNo);
+                            i.putExtra("textSize", textSize);
                             startActivity(i);
                         }
                     }
@@ -142,6 +152,7 @@ public class Diagnose extends ActionBarActivity {
                         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
+                        i.putExtra("textSize", textSize);
                        // finish();
                         startActivity(i);
                     }
@@ -155,6 +166,7 @@ public class Diagnose extends ActionBarActivity {
                         //t.setText(questions[questionNo]);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
+                        i.putExtra("textSize", textSize);
                        // finish();
                         startActivity(i);
                     }
@@ -165,6 +177,7 @@ public class Diagnose extends ActionBarActivity {
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", 12);
                         i.putExtra("prev", 10);
+                        i.putExtra("textSize", textSize);
                        // finish();
                         startActivity(i);
                     }
@@ -178,6 +191,7 @@ public class Diagnose extends ActionBarActivity {
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
                         i.putExtra("prev", 11);
+                        i.putExtra("textSize", textSize);
                        // finish();
                         startActivity(i);
                     }
@@ -188,6 +202,7 @@ public class Diagnose extends ActionBarActivity {
                         //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                         Intent i = new Intent(Diagnose.this, Outcome1.class);
                         i.putExtra("prev", questionNo);
+                        i.putExtra("textSize", textSize);
                         startActivity(i);
                     }
                 }
@@ -200,6 +215,7 @@ public class Diagnose extends ActionBarActivity {
                         //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                         Intent i = new Intent(Diagnose.this, Outcome2.class);
                         i.putExtra("prev", questionNo);
+                        i.putExtra("textSize", textSize);
                         startActivity(i);
                     }
                     else
@@ -209,6 +225,7 @@ public class Diagnose extends ActionBarActivity {
                         //startActivity((new Intent(Diagnose.this, Outcome3.class)));
                         Intent i = new Intent(Diagnose.this, Outcome3.class);
                         i.putExtra("prev", questionNo);
+                        i.putExtra("textSize", textSize);
                         startActivity(i);
                     }
                 }
@@ -253,6 +270,7 @@ public class Diagnose extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+                textSize = "S";
             }
         });
 
@@ -261,6 +279,7 @@ public class Diagnose extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                textSize = "M";
             }
         });
 
@@ -269,6 +288,7 @@ public class Diagnose extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+                textSize = "L";
             }
         });
 
@@ -338,6 +358,7 @@ public class Diagnose extends ActionBarActivity {
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 Intent i = new Intent(Diagnose.this, Diagnose.class);
                 i.putExtra("qNo", questionNo-1);
+                i.putExtra("textSize", textSize);
                 //  finish();
                 startActivity(i);
             }
@@ -346,6 +367,7 @@ public class Diagnose extends ActionBarActivity {
                     overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", prevQ);
+                    i.putExtra("textSize", textSize);
                     //  finish();
                     startActivity(i);
                 }
@@ -353,6 +375,7 @@ public class Diagnose extends ActionBarActivity {
                     overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", questionNo-1);
+                    i.putExtra("textSize", textSize);
                     //   finish();
                     startActivity(i);
                 }
