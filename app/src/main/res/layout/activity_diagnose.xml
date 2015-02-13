@@ -22,6 +22,7 @@
 
 
     <LinearLayout
+        android:id="@+id/yesNo_Btns"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -58,11 +59,58 @@
 
     </LinearLayout>
 
-    <Button
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/highlighted_text_material_light"
+        android:gravity="center"
+        android:paddingBottom="25dp">
+
+
+        <TextView
+            android:id="@+id/font_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Font Size"/>
+
+
+        <Button
+            android:id="@+id/font_small_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/font_small"
+            android:textSize="14sp"
+            android:layout_below="@+id/font_title">
+        </Button>
+        <Button
+            android:id="@+id/font_medium_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/font_medium"
+            android:layout_toRightOf="@+id/font_small_btn"
+            android:layout_below="@+id/font_title"
+            android:textSize="18sp"/>
+        <Button
+            android:id="@+id/font_large_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/font_large"
+            android:layout_toRightOf="@+id/font_medium_btn"
+            android:layout_below="@+id/font_title"
+            android:textSize="22sp">
+        </Button>
+    </RelativeLayout>
+
+    <!--<Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="BACK"
-        android:id="@+id/back_btn"/>
+        android:id="@+id/back_btn"/>-->
 
 </RelativeLayout>

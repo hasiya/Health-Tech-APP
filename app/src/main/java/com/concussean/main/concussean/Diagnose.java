@@ -1,9 +1,12 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,9 +30,12 @@ public class Diagnose extends ActionBarActivity {
     int prevQ = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose);
+
+
+
 
         /*TextView customView = (TextView)
                 LayoutInflater.from(this).inflate(R.layout.actionbar_custom_title_view_centered,
@@ -48,11 +54,17 @@ public class Diagnose extends ActionBarActivity {
 
         questionNo = getIntent().getExtras().getInt("qNo");
 
-        if (questionNo == 0){
-            Button b = (Button)findViewById(R.id.back_btn);
-            b.setVisibility(View.GONE);
+        if(questionNo == 0){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }else{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        /*if (questionNo == 0){
+            Button b = (Button)findViewById(R.id.back_btn);
+            b.setVisibility(View.INVISIBLE);
+        }
+*/
         if (questionNo == 12){
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -107,7 +119,7 @@ public class Diagnose extends ActionBarActivity {
                         if (questionNo <= 9)
                         {
                             //go to Outcome 1
-                            finish();
+                           // finish();
                             //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                             Intent i = new Intent(Diagnose.this, Outcome1.class);
                             i.putExtra("prev", questionNo);
@@ -116,7 +128,7 @@ public class Diagnose extends ActionBarActivity {
                         else
                         {
                             //go to Outcome 2
-                            finish();
+                          //  finish();
                             //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                             Intent i = new Intent(Diagnose.this, Outcome2.class);
                             i.putExtra("prev", questionNo);
@@ -130,7 +142,7 @@ public class Diagnose extends ActionBarActivity {
                         overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
-                        finish();
+                       // finish();
                         startActivity(i);
                     }
 
@@ -143,7 +155,7 @@ public class Diagnose extends ActionBarActivity {
                         //t.setText(questions[questionNo]);
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
-                        finish();
+                       // finish();
                         startActivity(i);
                     }
                     else
@@ -153,7 +165,7 @@ public class Diagnose extends ActionBarActivity {
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", 12);
                         i.putExtra("prev", 10);
-                        finish();
+                       // finish();
                         startActivity(i);
                     }
                 }
@@ -166,13 +178,13 @@ public class Diagnose extends ActionBarActivity {
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
                         i.putExtra("prev", 11);
-                        finish();
+                       // finish();
                         startActivity(i);
                     }
                     else
                     {
                         //go to Outcome 1
-                        finish();
+                        //finish();
                         //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                         Intent i = new Intent(Diagnose.this, Outcome1.class);
                         i.putExtra("prev", questionNo);
@@ -184,7 +196,7 @@ public class Diagnose extends ActionBarActivity {
                     if (choice == 1)
                     {
                         //go to Outcome 2
-                        finish();
+                       // finish();
                         //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                         Intent i = new Intent(Diagnose.this, Outcome2.class);
                         i.putExtra("prev", questionNo);
@@ -193,7 +205,7 @@ public class Diagnose extends ActionBarActivity {
                     else
                     {
                         //go to Outcome 3
-                        finish();
+                       // finish();
                         //startActivity((new Intent(Diagnose.this, Outcome3.class)));
                         Intent i = new Intent(Diagnose.this, Outcome3.class);
                         i.putExtra("prev", questionNo);
@@ -203,37 +215,62 @@ public class Diagnose extends ActionBarActivity {
             }
         });
 
-    Button back = (Button)findViewById(R.id.back_btn);
+    /*Button back = (Button)findViewById(R.id.back_btn);
     back.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             vib.vibrate(50);
             Log.d("Previous Question:", " " + prevQ);
             if (questionNo != 12){
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                overridePendingTransition( R.anim.slide_out, R.anim.slide_in);
                 Intent i = new Intent(Diagnose.this, Diagnose.class);
                 i.putExtra("qNo", questionNo-1);
-                finish();
+              //  finish();
                 startActivity(i);
             }
             else{
                 if (prevQ != 0){
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    overridePendingTransition( R.anim.slide_out, R.anim.slide_in);
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", prevQ);
-                    finish();
+                  //  finish();
                     startActivity(i);
                 }
                 else{
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    overridePendingTransition( R.anim.slide_out, R.anim.slide_in);
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", questionNo-1);
-                    finish();
+                 //   finish();
                     startActivity(i);
                 }
             }
         }
-    });
+    });*/
+
+
+        Button small = (Button)findViewById(R.id.font_small_btn);
+        small.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                t.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+            }
+        });
+
+        Button medium = (Button)findViewById(R.id.font_medium_btn);
+        medium.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            }
+        });
+
+        Button large = (Button)findViewById(R.id.font_large_btn);
+        large.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+            }
+        });
 
     }
 
@@ -252,6 +289,8 @@ public class Diagnose extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (item.getItemId()) {
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_exit)
@@ -289,6 +328,36 @@ public class Diagnose extends ActionBarActivity {
             Intent i = new Intent(Diagnose.this, Diagnose.class);
             i.putExtra("qNo", 0);
             startActivity(i);
+        }
+
+        if(id == android.R.id.home){
+            Log.d("Home Pressed","");
+            vib.vibrate(50);
+            Log.d("Previous Question:", " " + prevQ);
+            if (questionNo != 12){
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                Intent i = new Intent(Diagnose.this, Diagnose.class);
+                i.putExtra("qNo", questionNo-1);
+                //  finish();
+                startActivity(i);
+            }
+            else{
+                if (prevQ != 0){
+                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    Intent i = new Intent(Diagnose.this, Diagnose.class);
+                    i.putExtra("qNo", prevQ);
+                    //  finish();
+                    startActivity(i);
+                }
+                else{
+                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    Intent i = new Intent(Diagnose.this, Diagnose.class);
+                    i.putExtra("qNo", questionNo-1);
+                    //   finish();
+                    startActivity(i);
+                }
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

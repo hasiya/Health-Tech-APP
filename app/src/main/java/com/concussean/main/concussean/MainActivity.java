@@ -1,6 +1,7 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,9 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.os.Vibrator;
+import android.app.ActionBar;
+
 
 
 public class MainActivity extends ActionBarActivity {
+
+    ActionBar actionBar;
 
     Vibrator vib;
 
@@ -18,6 +23,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);*/
+
+        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -27,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-                finish();
+               // finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, Diagnose.class);
                 i.putExtra("qNo", 0);
@@ -40,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-                finish();
+               // finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, Post.class);
                 //i.putExtra("qNo", 0);
@@ -53,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-                finish();
+                //finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, References.class);
                 //i.putExtra("qNo", 0);

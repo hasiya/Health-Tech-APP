@@ -12,4 +12,17 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_exit" android:title="@string/action_exit"
         android:orderInCategory="100" app:showAsAction="never" />
+    <!--<item android:id="@+id/action_font" android:title="@string/action_font"-->
+        <!--android:orderInCategory="100" app:showAsAction="never">-->
+        <!--<menu>-->
+            <!--<item android:id="@+id/action_font_small" android:title="@string/action_font_small"-->
+                <!--android:orderInCategory="100" app:showAsAction="never" />-->
+            <!--<item android:id="@+id/action_font_medium" android:title="@string/action_font_medium"-->
+                <!--android:orderInCategory="100" app:showAsAction="never" />-->
+            <!--<item android:id="@+id/action_font_large" android:title="@string/action_font_large"-->
+                <!--android:orderInCategory="100" app:showAsAction="never" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+
 </menu>
