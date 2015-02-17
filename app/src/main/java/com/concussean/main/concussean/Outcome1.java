@@ -1,6 +1,7 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,18 +27,16 @@ public class Outcome1 extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*Button back = (Button)findViewById(R.id.back_btn);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vib.vibrate(50);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                Intent i = new Intent(Outcome1.this, Diagnose.class);
-                i.putExtra("qNo", prevQ);
+        Button callBtn = (Button)findViewById(R.id.call_btn);
+        callBtn.setOnClickListener( new View.OnClickListener()
+        {
+            public void onClick(View v){
                 finish();
-                startActivity(i);
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:999"));
+                startActivity(callIntent);
             }
-        });*/
+        });
     }
 
 

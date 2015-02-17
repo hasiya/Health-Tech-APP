@@ -38,7 +38,7 @@
         android:layout_alignParentStart="true"
         android:paddingTop="20dp"/>
 
-    <TextView
+    <!--<TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -51,7 +51,15 @@
         android:layout_below="@+id/or1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="20dp"/>
+        android:paddingTop="20dp"/>-->
+    <Button
+        android:id="@+id/call_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/or1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/call_btn"
+        android:text="DIAL 999"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -63,7 +71,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="or"
         android:id="@+id/or2"
-        android:layout_below="@+id/call"
+        android:layout_below="@id/call_btn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:paddingTop="20dp"/>
