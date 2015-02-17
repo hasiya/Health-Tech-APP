@@ -1,24 +1,17 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.os.Vibrator;
-import android.support.v7.app.ActionBar;
-import android.view.LayoutInflater;
-
-import org.w3c.dom.Text;
 
 
 public class Diagnose extends ActionBarActivity {
@@ -29,10 +22,12 @@ public class Diagnose extends ActionBarActivity {
     int questionNo = 0;
     String textSize = "";
     int prevQ = 0;
+    Boolean isBack = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose);
 
@@ -44,17 +39,25 @@ public class Diagnose extends ActionBarActivity {
 
         TextView t = (TextView) findViewById(R.id.question_txt);
 
+        Button small_btn = (Button)findViewById(R.id.font_small_btn);
+        Button medium_btn = (Button)findViewById(R.id.font_medium_btn);
+        Button large_btn = (Button)findViewById(R.id.font_large_btn);
+
         if(textSize == null){
-            textSize = "";
+            textSize = "M";
+            medium_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
         }
         else if(textSize.equals(small)){
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+            small_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
         }
         else if (textSize.equals(medium)){
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            medium_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
         }
         else if(textSize.equals(large)){
             t.setTextSize(TypedValue.COMPLEX_UNIT_SP,22);
+            large_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
         }
 
 
@@ -109,6 +112,22 @@ public class Diagnose extends ActionBarActivity {
 
 
         t.setText(questions[questionNo]);
+
+        isBack = getIntent().getExtras().getBoolean("isBack");
+
+        if(isBack == null){
+
+        }
+
+        else if(isBack == true){
+            overridePendingTransition( R.anim.slide_in_copy, R.anim.slide_out_copy);
+
+        }
+        else{
+            overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
+        }
+
+
         Button yesBtn = (Button) findViewById((R.id.yes_btn));
         Button noBtn = (Button) findViewById((R.id.no_btn));
         setOnClick(t, yesBtn, 1);
@@ -118,6 +137,7 @@ public class Diagnose extends ActionBarActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isBack = false;
                 vib.vibrate(50);
                 if (questionNo != 10 && questionNo != 11 && questionNo != 19)
                 {
@@ -127,7 +147,7 @@ public class Diagnose extends ActionBarActivity {
                         if (questionNo <= 9)
                         {
                             //go to Outcome 1
-                           // finish();
+                             finish();
                             //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                             Intent i = new Intent(Diagnose.this, Outcome1.class);
                             i.putExtra("prev", questionNo);
@@ -137,7 +157,7 @@ public class Diagnose extends ActionBarActivity {
                         else
                         {
                             //go to Outcome 2
-                          //  finish();
+                            finish();
                             //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                             Intent i = new Intent(Diagnose.this, Outcome2.class);
                             i.putExtra("prev", questionNo);
@@ -149,11 +169,12 @@ public class Diagnose extends ActionBarActivity {
                     {
                         //questionNo ++;
                         //t.setText(questions[questionNo]);
-                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        //overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                        finish();
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
                         i.putExtra("textSize", textSize);
-                       // finish();
+
                         startActivity(i);
                     }
 
@@ -164,21 +185,23 @@ public class Diagnose extends ActionBarActivity {
                     {
                         //questionNo ++;
                         //t.setText(questions[questionNo]);
+                        finish();
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
                         i.putExtra("textSize", textSize);
-                       // finish();
+
                         startActivity(i);
                     }
                     else
                     {
                         //questionNo = 12;
                         //t.setText(questions[questionNo]);
+                        finish();
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", 12);
                         i.putExtra("prev", 10);
                         i.putExtra("textSize", textSize);
-                       // finish();
+
                         startActivity(i);
                     }
                 }
@@ -188,17 +211,18 @@ public class Diagnose extends ActionBarActivity {
                     {
                         //questionNo ++;
                         //t.setText(questions[questionNo]);
+                        finish();
                         Intent i = new Intent(Diagnose.this, Diagnose.class);
                         i.putExtra("qNo", questionNo+1);
                         i.putExtra("prev", 11);
                         i.putExtra("textSize", textSize);
-                       // finish();
+
                         startActivity(i);
                     }
                     else
                     {
                         //go to Outcome 1
-                        //finish();
+                        finish();
                         //startActivity((new Intent(Diagnose.this, Outcome1.class)));
                         Intent i = new Intent(Diagnose.this, Outcome1.class);
                         i.putExtra("prev", questionNo);
@@ -211,7 +235,7 @@ public class Diagnose extends ActionBarActivity {
                     if (choice == 1)
                     {
                         //go to Outcome 2
-                       // finish();
+                        finish();
                         //startActivity((new Intent(Diagnose.this, Outcome2.class)));
                         Intent i = new Intent(Diagnose.this, Outcome2.class);
                         i.putExtra("prev", questionNo);
@@ -221,7 +245,7 @@ public class Diagnose extends ActionBarActivity {
                     else
                     {
                         //go to Outcome 3
-                       // finish();
+                        finish();
                         //startActivity((new Intent(Diagnose.this, Outcome3.class)));
                         Intent i = new Intent(Diagnose.this, Outcome3.class);
                         i.putExtra("prev", questionNo);
@@ -264,30 +288,40 @@ public class Diagnose extends ActionBarActivity {
         }
     });*/
 
+        final Button small_btn = (Button)findViewById(R.id.font_small_btn);
+        final Button medium_btn = (Button)findViewById(R.id.font_medium_btn);
+        final Button large_btn = (Button)findViewById(R.id.font_large_btn);
 
-        Button small = (Button)findViewById(R.id.font_small_btn);
-        small.setOnClickListener(new View.OnClickListener(){
+        small_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+                small_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
+                medium_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
+                large_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
                 textSize = "S";
             }
         });
 
-        Button medium = (Button)findViewById(R.id.font_medium_btn);
-        medium.setOnClickListener(new View.OnClickListener(){
+
+        medium_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                small_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
+                medium_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
+                large_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
                 textSize = "M";
             }
         });
 
-        Button large = (Button)findViewById(R.id.font_large_btn);
-        large.setOnClickListener(new View.OnClickListener() {
+        large_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+                small_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
+                medium_btn.setBackground(getResources().getDrawable(R.drawable.font_btn));
+                large_btn.setBackground(getResources().getDrawable(R.drawable.font_forcus));
                 textSize = "L";
             }
         });
@@ -354,29 +388,33 @@ public class Diagnose extends ActionBarActivity {
             Log.d("Home Pressed","");
             vib.vibrate(50);
             Log.d("Previous Question:", " " + prevQ);
+            isBack = true;
             if (questionNo != 12){
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+               // overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                finish();
                 Intent i = new Intent(Diagnose.this, Diagnose.class);
                 i.putExtra("qNo", questionNo-1);
                 i.putExtra("textSize", textSize);
-                //  finish();
+                i.putExtra("isBack", isBack);
                 startActivity(i);
             }
             else{
                 if (prevQ != 0){
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    //overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    finish();
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", prevQ);
                     i.putExtra("textSize", textSize);
-                    //  finish();
+                    i.putExtra("isBack", isBack);
                     startActivity(i);
                 }
                 else{
-                    overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                   // overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                    finish();
                     Intent i = new Intent(Diagnose.this, Diagnose.class);
                     i.putExtra("qNo", questionNo-1);
                     i.putExtra("textSize", textSize);
-                    //   finish();
+                    i.putExtra("isBack", isBack);
                     startActivity(i);
                 }
             }

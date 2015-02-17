@@ -97,9 +97,11 @@ public class Outcome1 extends ActionBarActivity {
         if(id == android.R.id.home) {
             Log.d("Home Pressed", "");
             vib.vibrate(50);
-            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            boolean isBack = true;
+            overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
             Intent i = new Intent(Outcome1.this, Diagnose.class);
             i.putExtra("qNo", prevQ);
+            i.putExtra("isBack", isBack);
             finish();
             startActivity(i);
         }

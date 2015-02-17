@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-               // finish();
+                finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, Diagnose.class);
                 i.putExtra("qNo", 0);
@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-               // finish();
+                finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, Post.class);
                 //i.putExtra("qNo", 0);
@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v)
             {
                 vib.vibrate(50);
-                //finish();
+                finish();
                 //startActivity((new Intent(MainActivity.this, Diagnose.class)));
                 Intent i = new Intent(MainActivity.this, References.class);
                 //i.putExtra("qNo", 0);
