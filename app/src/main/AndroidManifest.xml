@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.concussean.main.concussean" >
 
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +11,7 @@
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,45 +22,55 @@
         <activity
             android:name=".Help"
             android:label="@string/title_activity_help"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".About"
             android:label="@string/title_activity_about"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Diagnose"
             android:label="@string/title_activity_diagnose"
-            android:screenOrientation="portrait">
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value="com.concussean.main.concussean.MainActivity" />-->
+            android:screenOrientation="portrait" >
+
+            <!-- <meta-data -->
+            <!-- android:name="android.support.PARENT_ACTIVITY" -->
+            <!-- android:value="com.concussean.main.concussean.MainActivity" /> -->
         </activity>
         <activity
             android:name=".Outcome1"
             android:label="@string/title_activity_outcome1"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Outcome2"
             android:label="@string/title_activity_outcome2"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Outcome3"
             android:label="@string/title_activity_outcome3"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Post"
             android:label="@string/title_activity_post"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".References"
             android:label="@string/title_activity_ref"
-            android:screenOrientation="portrait">
-        </activity></application>
-<uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".General"
+            android:label="@string/title_activity_general" >
+        </activity>
+        <activity
+            android:name=".ReturnToPlay"
+            android:label="@string/title_activity_return_to_play" >
+        </activity>
+    </application>
+
 </manifest>

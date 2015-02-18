@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Vibrator;
+import android.view.View;
+import android.widget.Button;
 
 
 public class Post extends ActionBarActivity {
@@ -17,6 +19,20 @@ public class Post extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+        Button btn = (Button) findViewById((R.id.genrl_advice));
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                vib.vibrate(50);
+                finish();
+                //startActivity((new Intent(MainActivity.this, Diagnose.class)));
+                Intent i = new Intent(Post.this, General.class);
+
+                startActivity(i);
+            }
+        });
     }
 
 

@@ -24,7 +24,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_concussed"
-            android:textColor="#ffe8e8e8"
+            android:textColor="#000000"
             android:background="#80D314"
             style="@android:style/ButtonBar"
             android:layout_gravity="center_vertical" />
