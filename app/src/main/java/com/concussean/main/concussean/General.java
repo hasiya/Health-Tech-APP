@@ -1,24 +1,48 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 
 public class General extends ActionBarActivity {
 
     Vibrator vib;
+    Boolean isBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general);
+
+        View root = this.getWindow().getDecorView();
+        root.setBackgroundColor(Color.parseColor("#e4e4e4"));
+
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        try {
+            isBack = getIntent().getExtras().getBoolean("isBack");
+        }
+        catch (Exception e){
+            Log.d(e.getMessage(), "");
+        }
+        if (isBack == null)
+        {
+
+        }
+        else if (isBack == false) {
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        }
 
         TextView general = (TextView)findViewById(R.id.gen_advice);
         general.setText(Html.fromHtml(
@@ -50,6 +74,17 @@ public class General extends ActionBarActivity {
                         "<br/>"));
         general.setTextSize(16);
 
+
+    }
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Log.d("Back Button Pressed: ", "");
+        isBack = true;
+        vib.vibrate(50);
+        finish();
+        Intent i = new Intent(General.this, Post.class);
+        i.putExtra("isBack", isBack);
+        startActivity(i);
 
     }
 
@@ -94,6 +129,14 @@ public class General extends ActionBarActivity {
             vib.vibrate(50);
             finish();
             startActivity((new Intent(General.this, About.class)));
+        }
+        if(id == android.R.id.home){
+            isBack = true;
+            vib.vibrate(50);
+            finish();
+            Intent i = new Intent(General.this, Post.class);
+            i.putExtra("isBack", isBack);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

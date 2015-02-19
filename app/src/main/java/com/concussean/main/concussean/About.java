@@ -3,6 +3,7 @@ package com.concussean.main.concussean;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Vibrator;
@@ -19,6 +20,11 @@ public class About extends ActionBarActivity {
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
     }
 
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Log.d("Back Button Pressed: ", "");
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

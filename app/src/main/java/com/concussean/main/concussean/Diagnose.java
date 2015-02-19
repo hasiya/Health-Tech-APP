@@ -31,6 +31,11 @@ public class Diagnose extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnose);
 
+        View root = this.getWindow().getDecorView();
+        root.setBackgroundColor(Color.parseColor("#e4e4e4"));
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String small = "S";
         String medium = "M";
         String large = "L";
@@ -67,17 +72,12 @@ public class Diagnose extends ActionBarActivity {
 
         questionNo = getIntent().getExtras().getInt("qNo");
 
-        if(questionNo == 0){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+       /* if(questionNo == 0){
+
         }else{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        }*/
 
-        /*if (questionNo == 0){
-            Button b = (Button)findViewById(R.id.back_btn);
-            b.setVisibility(View.INVISIBLE);
-        }
-*/
         if (questionNo == 12){
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -133,6 +133,51 @@ public class Diagnose extends ActionBarActivity {
         setOnClick(t, yesBtn, 1);
         setOnClick(t, noBtn, 2);
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Log.d("Back Button Pressed: ","");
+        vib.vibrate(50);
+        Log.d("Previous Question:", " " + prevQ);
+        isBack = true;
+        if(questionNo == 0){
+            vib.vibrate(50);
+            finish();
+            Intent i = new Intent(Diagnose.this, MainActivity.class);
+            startActivity((i));
+        }
+        else if (questionNo != 12){
+            // overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+            finish();
+            Intent i = new Intent(Diagnose.this, Diagnose.class);
+            i.putExtra("qNo", questionNo-1);
+            i.putExtra("textSize", textSize);
+            i.putExtra("isBack", isBack);
+            startActivity(i);
+        }
+        else{
+            if (prevQ > 0){
+                //overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                finish();
+                Intent i = new Intent(Diagnose.this, Diagnose.class);
+                i.putExtra("qNo", prevQ);
+                i.putExtra("textSize", textSize);
+                i.putExtra("isBack", isBack);
+                startActivity(i);
+            }
+            else{
+                // overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                finish();
+                Intent i = new Intent(Diagnose.this, Diagnose.class);
+                i.putExtra("qNo", questionNo-1);
+                i.putExtra("textSize", textSize);
+                i.putExtra("isBack", isBack);
+                startActivity(i);
+            }
+        }
+    }
+
     private void setOnClick(final TextView t, final Button btn, final int choice) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +300,10 @@ public class Diagnose extends ActionBarActivity {
                 }
             }
         });
+
+
+
+
 
     /*Button back = (Button)findViewById(R.id.back_btn);
     back.setOnClickListener(new View.OnClickListener() {
@@ -389,7 +438,13 @@ public class Diagnose extends ActionBarActivity {
             vib.vibrate(50);
             Log.d("Previous Question:", " " + prevQ);
             isBack = true;
-            if (questionNo != 12){
+            if(questionNo == 0){
+                vib.vibrate(50);
+                finish();
+                Intent i = new Intent(Diagnose.this, MainActivity.class);
+                startActivity((i));
+            }
+            else if (questionNo != 12){
                // overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 finish();
                 Intent i = new Intent(Diagnose.this, Diagnose.class);
@@ -399,7 +454,7 @@ public class Diagnose extends ActionBarActivity {
                 startActivity(i);
             }
             else{
-                if (prevQ != 0){
+                if (prevQ > 0){
                     //overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                     finish();
                     Intent i = new Intent(Diagnose.this, Diagnose.class);

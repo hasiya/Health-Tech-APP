@@ -1,11 +1,13 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Vibrator;
+import android.view.View;
 
 public class Help extends ActionBarActivity {
 
@@ -15,6 +17,10 @@ public class Help extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+
+        View root = this.getWindow().getDecorView();
+        root.setBackgroundColor(Color.parseColor("#e4e4e4"));
+
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
     }
 

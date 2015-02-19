@@ -1,9 +1,11 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,10 +21,14 @@ public class MainActivity extends ActionBarActivity {
 
     Vibrator vib;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        View root = this.getWindow().getDecorView();
+        root.setBackgroundColor(Color.parseColor("#e4e4e4"));
 
         /*actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);*/
@@ -30,6 +36,23 @@ public class MainActivity extends ActionBarActivity {
         /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+       /* try {
+            isBack = getIntent().getExtras().getBoolean("isBack");
+        }
+        catch (Exception e){
+            Log.d(e.getMessage(), "");
+        }
+        if (isBack == null)
+        {
+
+        }
+        else if (isBack == true) {
+            overridePendingTransition(R.anim.slide_in_copy, R.anim.slide_out_copy);
+
+        } else {
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        }*/
 
         Button btn = (Button) findViewById((R.id.start_btn));
         btn.setOnClickListener(new View.OnClickListener()
@@ -70,6 +93,11 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(i);
             }
         });
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.d("Back Button Pressed: ", "");
+
     }
 
 

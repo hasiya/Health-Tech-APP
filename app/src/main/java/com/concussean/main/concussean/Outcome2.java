@@ -1,6 +1,7 @@
 package com.concussean.main.concussean;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,10 @@ public class Outcome2 extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outcome2);
+
+        View root = this.getWindow().getDecorView();
+        root.setBackgroundColor(Color.parseColor("#e4e4e4"));
+
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         prevQ = getIntent().getExtras().getInt("prev");
@@ -40,6 +45,20 @@ public class Outcome2 extends ActionBarActivity {
         });*/
     }
 
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Log.d("Back Button Pressed: ", "");
+
+        vib.vibrate(50);
+        boolean isBack = true;
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+        Intent i = new Intent(Outcome2.this, Diagnose.class);
+        i.putExtra("qNo", prevQ);
+        i.putExtra("isBack", isBack);
+        finish();
+        startActivity(i);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

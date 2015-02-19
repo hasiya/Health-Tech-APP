@@ -24,9 +24,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="General Advice"
-            android:textColor="#ffe8e8e8"
-            android:background="#ff3564ff"
+            android:background="@drawable/btn_shape"
             style="@android:style/ButtonBar"
+            android:padding="@dimen/abc_text_size_body_1_material"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 
@@ -41,8 +41,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Return To Play"
-            android:textColor="#ffe8e8e8"
-            android:background="#ff3564ff"
+            android:background="@drawable/btn_shape"
+            android:padding="@dimen/abc_text_size_body_1_material"
             style="@android:style/ButtonBar" />
     </LinearLayout>
     <LinearLayout
