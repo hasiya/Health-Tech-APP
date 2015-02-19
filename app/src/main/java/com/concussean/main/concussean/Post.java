@@ -69,8 +69,6 @@ public class Post extends ActionBarActivity {
         else if (isBack == false) {
             overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
-        } else {
-
         }
     }
 

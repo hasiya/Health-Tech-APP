@@ -56,7 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/or1"
+        android:textSize="@dimen/abc_text_size_large_material"
         android:layout_centerHorizontal="true"
+        android:padding="@android:dimen/app_icon_size"
+        android:layout_marginTop="10dp"
         android:background="@drawable/call_btn"
         android:text="DIAL 999"/>
 

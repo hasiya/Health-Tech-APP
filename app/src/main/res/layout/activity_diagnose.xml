@@ -43,6 +43,7 @@
                 android:text="Yes"
                 android:drawableRight="@drawable/yes_btn"
                 android:id="@+id/yes_btn"
+                android:textColor="#0078c1"
                 android:layout_below="@+id/question_txt"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="70dp"
@@ -65,6 +66,7 @@
                 android:text="No"
                 android:drawableRight="@drawable/no_btn"
                 android:id="@+id/no_btn"
+                android:textColor="#0078c1"
                 android:layout_below="@+id/yes_btn"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="70dp"
@@ -80,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_alignParentBottom="true"
-        android:background="@color/highlighted_text_material_light"
+        android:background="#0078c1"
         android:gravity="center">
 
 
@@ -89,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-
+            android:textColor="#ffffffff"
             android:text="Font Size"/>
 
 
