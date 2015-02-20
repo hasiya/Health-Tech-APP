@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="General Advice"
             android:background="@drawable/btn_shape"
+            android:textColor="#0078c1"
             style="@android:style/ButtonBar"
             android:padding="@dimen/abc_text_size_body_1_material"
             android:layout_gravity="center_vertical" />
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:text="Return To Play"
             android:background="@drawable/btn_shape"
+            android:textColor="#0078c1"
             android:padding="@dimen/abc_text_size_body_1_material"
             style="@android:style/ButtonBar" />
     </LinearLayout>
