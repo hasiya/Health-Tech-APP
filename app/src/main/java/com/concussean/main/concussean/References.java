@@ -27,6 +27,8 @@ public class References extends ActionBarActivity {
         View root = this.getWindow().getDecorView();
         root.setBackgroundColor(Color.parseColor("#e4e4e4"));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         TextView ref_1 = (TextView) findViewById(R.id.ref_1);

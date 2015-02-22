@@ -2,13 +2,20 @@ package com.concussean.main.concussean;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.os.Vibrator;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageButton;
 
 public class Help extends ActionBarActivity {
 
@@ -19,6 +26,7 @@ public class Help extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        getWindow().setFormat(PixelFormat.UNKNOWN);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -26,6 +34,16 @@ public class Help extends ActionBarActivity {
         root.setBackgroundColor(Color.parseColor("#e4e4e4"));
 
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+        ImageButton video_btn = (ImageButton)  findViewById(R.id.video_thum);
+        video_btn.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.youtube.com/watch?v=-iBrSqDNSSo"));
+                startActivity(i);
+            }
+        });
+
 
         try {
             isBack = getIntent().getExtras().getBoolean("isBack");
@@ -37,7 +55,7 @@ public class Help extends ActionBarActivity {
         {
 
         }
-        else if (isBack == false) {
+        else if (!isBack) {
             overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
         }

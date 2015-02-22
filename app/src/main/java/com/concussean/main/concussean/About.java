@@ -13,18 +13,42 @@ import android.os.Vibrator;
 public class About extends ActionBarActivity {
 
     Vibrator vib;
+    Boolean isBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         vib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+        try {
+            isBack = getIntent().getExtras().getBoolean("isBack");
+        }
+        catch (Exception e){
+            Log.d(e.getMessage(), "");
+        }
+        if (isBack == null)
+        {
+
+        }
+        else if (isBack == false) {
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
+        }
     }
 
     public void onBackPressed() {
         //super.onBackPressed();
         Log.d("Back Button Pressed: ", "");
-
+        isBack = true;
+        vib.vibrate(50);
+        finish();
+        Intent i = new Intent(About.this, MainActivity.class);
+        i.putExtra("isBack", isBack);
+        startActivity(i);
     }
 
     @Override
@@ -61,6 +85,14 @@ public class About extends ActionBarActivity {
             vib.vibrate(50);
             finish();
             startActivity((new Intent(About.this, Help.class)));
+        }
+        if (id == android.R.id.home){
+            isBack = true;
+            vib.vibrate(50);
+            finish();
+            Intent i = new Intent(About.this, MainActivity.class);
+            i.putExtra("isBack", isBack);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
